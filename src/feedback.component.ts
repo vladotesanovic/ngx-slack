@@ -125,6 +125,12 @@ textarea {
   border-radius: 4px;
   display: inline-block;
   margin: 5px;
+}  
+.btn[disabled] {
+  cursor: not-allowed;
+  opacity: .65;
+  filter: alpha(opacity=65);
+  box-shadow: none;
 }
 
 .content.action {
