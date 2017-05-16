@@ -52,7 +52,6 @@ import {MyComponent} from './my.component';
     imports: [
       BrowserModule,
       NgxSlackModule.initializeApp('https://hooks.slack.com/services/XXXXXXX/XXXXXXX/XXXXXXXXXXXXXXXXXXXXX'),
-      NgxPaginationModule
       ], // <-- include it in your app module
     declarations: [MyComponent],
     bootstrap: [MyComponent]
