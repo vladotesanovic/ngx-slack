@@ -80,11 +80,11 @@ export class MyComponent {}
 
 | Input | Default |
 | --- | --- |
-|  placeholder | 'Enter your feedback or question here'  |
-|  successMessage | 'Thank you for your Feedback!'  |
-|  buttonText | 'Send a Message'  |
-|  buttonTextSending | 'Sending...'  |
-|  messageTitle | 'Feedback from NgxSlack'  |
+|  placeholder | Enter your feedback or question here  |
+|  successMessage | Thank you for your Feedback!  |
+|  buttonText | Send a Message  |
+|  buttonTextSending | Sending... |
+|  messageTitle | Feedback from NgxSlack  |
 
 ## Building from source
 
@@ -92,7 +92,6 @@ Requires globally-installed node (tested with v5.x) & npm.
 
 ```
 npm install
-npm run test
 npm run build 
 ```
 `test` runs the Karma tests once. You can also use `test:watch` to keep tests running in watch mode.
