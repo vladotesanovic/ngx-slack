@@ -1,4 +1,7 @@
-# Slack Webhook integration for Angular (v2+)
+# Slack Webhooks integration for Angular (v2+)
+
+![Slack](https://fst.slack-edge.com/66f9/img/icons/ios-114.png "Slack")
+
 
 Feedback module that send message directly to Slack.
 
@@ -19,7 +22,12 @@ Feedback module that send message directly to Slack.
 
 ## Demo
 
-Check out the live demo here: 
+Check out the live demo here: http://ngx-slack-demo.surge.sh
+
+Demo Slack channel: https://ngx-slack.slack.com/messages/C5DNU65UH
+
+![Demo](https://media.giphy.com/media/26FmQTavFr58Hj7W0/giphy.gif "Demo")
+
 
 ## Quick Start
 
@@ -51,7 +59,8 @@ import {MyComponent} from './my.component';
 @NgModule({
     imports: [
       BrowserModule,
-      NgxSlackModule.initializeApp('https://hooks.slack.com/services/XXXXXXX/XXXXXXX/XXXXXXXXXXXXXXXXXXXXX'),
+      // This is demo url, replace it with your Slack Webhooks link.
+      NgxSlackModule.initializeApp('https://hooks.slack.com/services/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'),
       ], // <-- include it in your app module
     declarations: [MyComponent],
     bootstrap: [MyComponent]
@@ -70,7 +79,7 @@ import {Component} from '@angular/core';
       Home works!!!
     </p>
        
-    <ngx-slack-feedback messageTitle='Feedback from my App'></ngx-slack-feedback>
+    <ngx-slack-feedback messageTitle='Feedback from my Demo App'></ngx-slack-feedback>
     `
 })
 export class MyComponent {}
@@ -88,7 +97,7 @@ export class MyComponent {}
 
 ## Building from source
 
-Requires globally-installed node (tested with v5.x) & npm. 
+Requires globally-installed node (tested with v6.x) & npm. 
 
 ```
 npm install
