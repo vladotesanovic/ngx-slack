@@ -154,6 +154,7 @@ export class FeedbackComponent {
   @Input() buttonText = 'Send a Message';
   @Input() buttonTextSending = 'Sending..';
   @Input() messageTitle = 'Feedback from NgxSlack';
+  @Input() closeAfter = 2000;
 
   constructor(private fb: FeedbackService, private cd: ChangeDetectorRef, @Inject(SlackUrlToken) public slackUrlToken) {}
 
@@ -190,9 +191,12 @@ export class FeedbackComponent {
   }
 
   private updateComponent() {
-
     this.sent = true;
     this.sending = false;
     this.cd.markForCheck();
+    setTimeout(() => {
+      this.closed = true;
+      this.cd.markForCheck();
+    }, this.closeAfter);
   }
 }

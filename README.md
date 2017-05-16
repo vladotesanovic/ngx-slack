@@ -94,6 +94,8 @@ export class MyComponent {}
 |  buttonText | Send a Message  |
 |  buttonTextSending | Sending... |
 |  messageTitle | Feedback from NgxSlack  |
+|  closeAfter | 2000  |
+
 
 ## Building from source
 
