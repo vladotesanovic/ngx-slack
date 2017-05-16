@@ -1,6 +1,6 @@
 {
   "name": "ngx-slack",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Slack integration for Angular 4",
   "module": "dist/ngx-slack.js",
   "main": "dist/ngx-slack.umd.js",
