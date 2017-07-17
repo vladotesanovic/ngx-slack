@@ -10,7 +10,7 @@ import 'rxjs/add/observable/of';
 export class FeedbackService {
   constructor(private http: Http, @Inject(SlackUrlToken) private slackUrlToken) {}
 
-  notifySlack(slackObject: object) {
+  notifySlack(slackObject: Object) {
 
     const header = new Headers();
     header.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
