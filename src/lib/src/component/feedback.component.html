@@ -1,0 +1,17 @@
+<ng-container *ngIf="slackUrlToken">
+  <div class="main" [ngClass]="{'hidden': closed, 'visible': !closed}">
+    <form #f="ngForm" (submit)="sendFeedback(f.value)" *ngIf="!sent">
+      <div class="content results">
+        <textarea ngModel name="feedback" required rows="6" class="search-form--input" [placeholder]="placeholder"></textarea>
+      </div>
+      <div class="content action">
+        <button [disabled]="!f.valid || sending" class="btn"><ng-container *ngIf="!sending">{{buttonText}}</ng-container><ng-container *ngIf="sending">{{buttonTextSending}}</ng-container></button>
+      </div>
+    </form>
+    <div class="content message" *ngIf="sent">
+      <p>{{successMessage}}</p>
+    </div>
+  </div>
+  <button (click)="toggle()" [ngClass]="{'closed': closed, 'open': !closed}" class="hs-beacon"></button>
+</ng-container>
+<ng-container *ngIf="!slackUrlToken">No Slack URL provided</ng-container>

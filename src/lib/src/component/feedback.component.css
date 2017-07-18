@@ -1,31 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, Inject, Input } from '@angular/core';
-import { FeedbackService } from './feedback.service';
-import { SlackUrlToken } from './ngx-slack.module';
-
-import 'rxjs/add/operator/catch';
-
-@Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'ngx-slack-feedback',
-  template: `<ng-container *ngIf="slackUrlToken"><div class="main" [ngClass]="{'hidden': closed, 'visible': !closed}">
-      <form #f="ngForm" (submit)="sendFeedback(f.value)" *ngIf="!sent">
-          <div class="content results">
-              <textarea ngModel name="feedback" required rows="6" class="search-form--input" [placeholder]="placeholder"></textarea>
-          </div>
-          <div class="content action">
-              <button [disabled]="!f.valid || sending" class="btn"><ng-container *ngIf="!sending">{{buttonText}}</ng-container><ng-container *ngIf="sending">{{buttonTextSending}}</ng-container></button>
-          </div>
-      </form>
-      <div class="content message" *ngIf="sent">
-          <p>{{successMessage}}</p>
-      </div>
-  </div>
-
-  <button (click)="toggle()" [ngClass]="{'closed': closed, 'open': !closed}" class="hs-beacon"></button>
-  </ng-container>
-  <ng-container *ngIf="!slackUrlToken">No Slack URL provided</ng-container>
-  `,
-  styles: [`.hs-beacon {
+.hs-beacon {
   border: 0;
   border-radius: 100%;
   bottom: 12px;
@@ -125,7 +98,7 @@ textarea {
   border-radius: 4px;
   display: inline-block;
   margin: 5px;
-}  
+}
 .btn[disabled] {
   cursor: not-allowed;
   opacity: .65;
@@ -147,62 +120,4 @@ textarea {
   box-sizing: border-box;
   border-top: 1px solid #e6e6e6;
   width: 100%;
-}
-`]
-})
-export class FeedbackComponent {
-  closed = true;
-  sent = false;
-  sending = false;
-
-  @Input() placeholder = 'Enter your feedback or question here';
-  @Input() successMessage = 'Thank you for your Feedback!';
-  @Input() buttonText = 'Send a Message';
-  @Input() buttonTextSending = 'Sending..';
-  @Input() messageTitle = 'Feedback from NgxSlack';
-  @Input() closeAfter = 2000;
-
-  constructor(private fb: FeedbackService, private cd: ChangeDetectorRef, @Inject(SlackUrlToken) public slackUrlToken) {}
-
-  toggle() {
-    this.closed = !this.closed;
-
-    if (this.sent) {
-      this.sent = false;
-    }
-  }
-
-  sendFeedback(data: { feedback: string }) {
-
-    this.sending = true;
-
-    const slackObject = {
-      text: data.feedback,
-      'attachments': [
-        {
-          'title': this.messageTitle,
-        },
-      ]
-    };
-
-    this.fb.notifySlack(slackObject)
-      .catch((data) => {
-        console.error('Unable to send message. Is URL correct?');
-        this.updateComponent();
-        return data;
-      })
-      .subscribe(() => {
-        this.updateComponent();
-      });
-  }
-
-  private updateComponent() {
-    this.sent = true;
-    this.sending = false;
-    this.cd.markForCheck();
-    setTimeout(() => {
-      this.closed = true;
-      this.cd.markForCheck();
-    }, this.closeAfter);
-  }
 }

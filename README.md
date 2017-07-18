@@ -107,7 +107,7 @@ npm run build
 ```
 `test` runs the Karma tests once. You can also use `test:watch` to keep tests running in watch mode.
 
-`npm run build` creates an intermediate `/build` folder, but the final output of the lib (which gets published to npm) is in the `/dist` folder.
+`npm run build` creates an intermediate `/dist` folder, but the final output of the lib (which gets published to npm) is in the `/dist` folder.
 
 ## License
 

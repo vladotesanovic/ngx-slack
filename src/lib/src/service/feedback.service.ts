@@ -1,14 +1,17 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { SlackUrlToken } from './ngx-slack.module';
+import { SlackUrlToken } from '../module';
 
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
 @Injectable()
 export class FeedbackService {
-  constructor(private http: Http, @Inject(SlackUrlToken) private slackUrlToken) {}
+  private slackUrlToken: string;
+  constructor(private http: Http, private injector: Injector) {
+    this.slackUrlToken = this.injector.get(SlackUrlToken);
+  }
 
   notifySlack(slackObject: object) {
 
@@ -20,7 +23,8 @@ export class FeedbackService {
         headers: header
       })
       .map((test: Response) => {
+        console.log(test);
         return Observable.of(test.text());
-      })
+      });
   }
 }

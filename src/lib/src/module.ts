@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { FeedbackComponent } from './feedback.component';
-import { FeedbackService } from './feedback.service';
+import { FeedbackComponent } from './component/feedback.component';
+import { FeedbackService } from './service/feedback.service';
 
 export const SlackUrlToken = new InjectionToken<string>('SlackUrlToken');
 
@@ -14,7 +14,9 @@ export const SlackUrlToken = new InjectionToken<string>('SlackUrlToken');
     FormsModule,
     HttpModule
   ],
-  declarations: [FeedbackComponent],
+  declarations: [
+    FeedbackComponent
+  ],
   providers: [
     FeedbackService
   ],
@@ -34,6 +36,6 @@ export class NgxSlackModule {
       providers: [
         { provide: SlackUrlToken, useValue: slackUrl }
       ]
-    }
+    };
   }
 }
